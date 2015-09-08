@@ -1,7 +1,10 @@
 package org.nutz.mole;
 
 import org.nutz.mole.impl.GenerallyDatabaseAdaptor;
+import org.nutz.mole.impl.HelpFileCreater;
 import org.nutz.mole.impl.Init;
+import org.nutz.mole.impl.ModuleCreater;
+import org.nutz.mole.impl.PojoCreater;
 
 public class ZMole {
 
@@ -16,11 +19,17 @@ public class ZMole {
 		if(context!=null)
 		{
 		//System.out.println(Json.toJson(context));
-			adaptor.toTarget(context);
+			generator(context);
 		}else
 		{
 			System.out.println("请检查数据库连接或者数据库是否有表");
 		}
 	}
+    
+    private static void generator(MoleContext context){
+        new PojoCreater().create(context);
+        new ModuleCreater().create(context);
+		new HelpFileCreater().create(context);
+    }
 
 }

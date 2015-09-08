@@ -23,10 +23,10 @@ import org.nutz.mole.meta.ZTable;
 public class GenerallyDatabaseAdaptor implements DatabaseAdaptor {
 
 	private static final Log log = Logs.get();
-
+    ConfigPool config = null;
 	public MoleContext fromDb(MoleContext context) {
 		Connection connection = null;
-		ConfigPool config = context.getConfig();
+		config = context.getConfig();
 		try {
 			//获取数据库连接
 			Class.forName(config.getProject().get("db_driver"));
@@ -131,13 +131,9 @@ public class GenerallyDatabaseAdaptor implements DatabaseAdaptor {
 		return null;
 	}
 
-	@Override
-	public void toTarget(MoleContext context) {
-		new PojoCreater().create(context);
-		new HelpFileCreater().create(context);
-	}
 
-	public static final String toName(String srcName) {
+	public final String toName(String srcName) {
+        
 		if (Strings.isBlank(srcName))
 			return "";
 		srcName = srcName.toLowerCase();
@@ -145,6 +141,14 @@ public class GenerallyDatabaseAdaptor implements DatabaseAdaptor {
 			srcName = srcName.substring(2);
 		if (srcName.startsWith("tb_"))
 			srcName = srcName.substring(3);
+        String prefix =config.getTableMapping().get("prefix");
+        if(srcName.startsWith(prefix)){
+            srcName = srcName.substring(prefix.length());
+        }
+        String postfix =config.getTableMapping().get("postfix");
+        if(srcName.endsWith(postfix)){
+            srcName = srcName.substring(0,(srcName.length() - prefix.length() + 1));
+        }
 		String[] names = srcName.split("_");
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < names.length; i++) {

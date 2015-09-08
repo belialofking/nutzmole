@@ -2,14 +2,13 @@ package org.nutz.mole.meta;
 
 import org.nutz.ioc.impl.PropertiesProxy;
 
-import lombok.Data;
 
 /**
  * 描述项目的总体配置信息
  * @author wendal
  *
  */
-@Data
+
 public class MoleProject {
 
 	/**

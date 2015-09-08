@@ -1,8 +1,7 @@
 package org.nutz.mole.meta;
 
-import lombok.Data;
 
-@Data
+
 public class ZField {
 
 	public String dbFieldName;
@@ -39,9 +38,15 @@ public class ZField {
 	public void setClassTypeName(String classTypeName) {
 		this.classTypeName = classTypeName;
 	}
-	public boolean isPrimaryKey() {
-		return isPrimaryKey;
-	}
+//    public boolean getIsPrimaryKey(){
+//        return isPrimaryKey;
+//    }
+    public boolean getPrimaryKey(){
+        return isPrimaryKey;
+    }
+//	public boolean isPrimaryKey() {
+//		return isPrimaryKey;
+//	}
 	public void setPrimaryKey(boolean isPrimaryKey) {
 		this.isPrimaryKey = isPrimaryKey;
 	}

@@ -1,4 +1,4 @@
-package ${packageName}.module;
+package ${packageName}.${moduleName};
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,12 +17,12 @@ import org.nutz.service.EntityService;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 
-import ${packageName}.bean.${zTable.className};
+import ${packageName}.${beanName}.${zTable.className};
 
 @At("/${zTable.className?lower_case}")
 @InjectName
 @IocBean(fields={"dao"})
-public class ${zTable.className}Module extends EntityService<${zTable.className}>{
+public class ${zTable.className}${moduleName?cap_first} extends EntityService<${zTable.className}>{
 
     private static final Log log = Logs.get();
 	

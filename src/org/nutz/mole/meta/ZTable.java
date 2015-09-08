@@ -3,9 +3,6 @@ package org.nutz.mole.meta;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Data;
-
-@Data
 public class ZTable {
 
 	private String tableName;
